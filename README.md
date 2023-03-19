@@ -1,5 +1,4 @@
 # Projetos
-Neste Repositório poderemos ver alguns projetos
+Neste Repositório poderemos ver alguns dos meus projetos. 
 
-## Expadin Cards
-[Deploy](https://projetos00.github.io/Expading-Cards/)
+- [Expading Cards](https://github.com/Levi-Martins/Projetos/tree/main/expading-cards)
