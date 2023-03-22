@@ -1,24 +1,61 @@
-let proximo = document.getElementById('proximo')
+const proximo = document.getElementById('proximo')
+const anterior = document.getElementById('anterior')
+const circuloAtivo = document.querySelectorAll('.circulo')
+const progresso = document.getElementById('progresso')
 let atual = 1;
-let circuloAtivo = document.querySelectorAll('.circulo')
-circuloAtivo.forEach((ativo,index)=>{
-    proximo.addEventListener('click', ()=>{
-        if(index == 1){
-            ativo.classList.add('ativo')
-            console.log(ativo)
-            console.log(index)
-            console.log(atual)
-            atual++;
-        }
-        else if(index == 2 && atual == 3){
-            ativo.classList.add('ativo')
-            console.log(ativo)
-            console.log(index)
-        }else if(index == 3 && atual == 4){
-            ativo.classList.add('ativo')
-            console.log(ativo)
-            console.log(index)
-        }
 
-    })
+proximo.addEventListener('click', ()=>{
+    atual++;
+    if(atual > circuloAtivo.length){
+        atual = 4;
+    }
+    console.log(atual)
+    up();
 })
+
+anterior.addEventListener('click', ()=>{
+    atual--
+    if(atual < 1){
+        atual = 1
+    }
+    up()
+    console.log(atual)
+})
+
+function up(){
+    circuloAtivo.forEach((ativo,index)=>{
+        if(atual > index){
+            ativo.classList.add('ativo')
+        }else if(atual <= index){
+            ativo.classList.remove('ativo')
+        }
+    })
+
+    //mostrar se o botão próximo e anterior vão está ativos ou não
+    if(atual === 1){
+        anterior.disabled = true
+    }else if(atual == circuloAtivo.length){
+        proximo.disabled = true
+    }else{
+        anterior.disabled = false
+        proximo.disabled = false
+    }
+
+    //aumentar ou diminuir a barra de progresso
+    switch(atual){
+        case 1:
+            progresso.style.width = '0%'
+            break
+        case 2:
+            progresso.style.width = '31%'
+            break
+        case 3:
+            progresso.style.width = '61%'
+            break
+        case 4:
+            progresso.style.width = '101%'
+            break
+        default:
+            break
+    }
+}
